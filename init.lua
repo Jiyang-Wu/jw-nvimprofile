@@ -753,6 +753,7 @@ require("lazy").setup({
 			vim.cmd.hi("Comment gui=none")
 		end,
 	},
+
 	{ -- You can easily change to a different colorscheme.
 		-- Change the name of the colorscheme plugin below, and then
 		-- change the command in the config to whatever the name of that colorscheme is.
@@ -767,6 +768,13 @@ require("lazy").setup({
 			vim.cmd.colorscheme("onedark")
 			-- You can configure highlights by doing something like:
 			vim.cmd.hi("Comment gui=none")
+		end,
+	},
+
+	{
+		"windwp/nvim-autopairs",
+		config = function()
+			require("nvim-autopairs").setup({})
 		end,
 	},
 
