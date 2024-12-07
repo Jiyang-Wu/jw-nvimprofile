@@ -112,6 +112,22 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
+vim.api.nvim_create_autocmd("VimEnter", {
+	pattern = "*",
+	callback = function()
+		-- Check if the argument is a directory
+		local directory = vim.fn.isdirectory(vim.fn.expand("%:p"))
+		if directory == 1 then
+			-- Close the buffer created by opening the directory
+			vim.cmd("enew")
+			vim.cmd("bwipeout #")
+
+			-- Open Telescope File Browser in the directory
+			require("telescope").extensions.file_browser.file_browser({ path = vim.fn.expand("%:p") })
+		end
+	end,
+})
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
